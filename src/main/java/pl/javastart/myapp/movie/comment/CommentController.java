@@ -1,6 +1,8 @@
 package pl.javastart.myapp.movie.comment;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.javastart.myapp.movie.Movie;
@@ -33,6 +35,16 @@ public class CommentController {
         comment.setMovie(movie);
 
         commentService.save(comment);
+
+        return "redirect:/film/" + movieId;
+    }
+
+    @GetMapping("/deletecomment/{id}")
+    private String deleteComment(@PathVariable Long id) {
+
+        Long movieId = commentService.findMovieIdForCommentId(id);
+
+        commentService.deleteById(id);
 
         return "redirect:/film/" + movieId;
     }

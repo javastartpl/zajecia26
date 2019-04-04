@@ -84,10 +84,6 @@ public class MovieController {
 
     @PostMapping("/editmovie")
     public String editMovie(Movie movie) {
-
-        String text = (5 < 2) ? "a": "b";
-
-
         movieRepository.save(movie);
         return "redirect:/film/" + movie.getId();
     }

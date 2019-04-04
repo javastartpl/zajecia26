@@ -26,6 +26,9 @@
 <div th:each="comment: ${movie.comments}" style="border: 1px solid black">
     <p th:text="${#temporals.format(comment.addedTime, 'yyyy-MM-dd HH:mm')}"></p>
     <p th:text="${comment.content}"></p>
+    <p>
+        <a th:href="|/deletecomment/${comment.id}|">Usuń</a>
+    </p>
 </div>
 
 </body>
