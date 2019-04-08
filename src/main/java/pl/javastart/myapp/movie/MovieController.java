@@ -17,17 +17,13 @@ public class MovieController {
     }
 
     @GetMapping("/")
-    public String allMovies(Model model, @RequestParam(required = false) TargetAudience targetAudience) {
+    public String allMovies(Model model, MovieFilters movieFilters) {
 
-        List<Movie> movies;
-        if(targetAudience == null) {
-            movies = movieRepository.findAll();
-        } else {
-            movies = movieRepository.findByTargetAudience(targetAudience);
+        if(movieFilters == null) {
+            movieFilters = new MovieFilters();
         }
 
-        MovieFilters movieFilters = new MovieFilters();
-        movieFilters.setTargetAudience(targetAudience);
+        List<Movie> movies = movieRepository.findUsingFilters(movieFilters.getTitle(), movieFilters.getTargetAudience());
 
         model.addAttribute("movies", movies);
         model.addAttribute("filters", movieFilters);

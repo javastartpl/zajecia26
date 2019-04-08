@@ -11,3 +11,15 @@ INSERT INTO comment(content, added_time, movie_id) VALUES
 ('Za gruby był', '2019-04-03 18:40:00', 1);
 
 
+INSERT INTO actor(id, name) VALUES
+(1, 'Dicaprio'),
+(2, 'Reevs'),
+(3, 'Cezary Żak'),
+(4, 'Kate Winslet');
+
+INSERT INTO role(actor_id, movie_id, name) VALUES
+(1, 1, 'Jack'),
+(4, 1, 'Rose'),
+(2, 2, 'Neo'),
+(3, 1, 'Wójt'),
+(3, 1, 'Proboszcz');
